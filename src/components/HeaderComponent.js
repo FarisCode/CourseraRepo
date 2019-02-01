@@ -102,7 +102,7 @@ export default class Header extends Component {
 									<Input type="checkbox" name="remember"
 										innerRef={(input) => this.remember = input} />
 									Remember me
-                </Label>
+                				</Label>
 							</FormGroup>
 							<Button type="submit" value="submit" color="primary">Login</Button>
 						</Form>
