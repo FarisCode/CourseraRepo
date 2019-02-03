@@ -19,10 +19,12 @@ class CommentForm extends React.Component {
       isModalOpen: !prevState.isModalOpen,
     }))
   }
+
   handleSubmit = (values) => {
     this.toggleModal();
-    this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+    this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
   }
+
   render() {
     const maxLength = (len) => (val) => !(val) || (val.length <= len);
     const required = (val) => val && val.length;
@@ -85,7 +87,7 @@ class CommentForm extends React.Component {
   }
 }
 
-function RenderComments({ comments, addComment, dishId }) {
+function RenderComments({ comments, postComment, dishId }) {
   const commentsList = comments.map((comment) =>
     <div key={comment.id}>
       <p>{comment.comment}</p>
@@ -96,7 +98,7 @@ function RenderComments({ comments, addComment, dishId }) {
     <>
       <h4>Comments</h4>
       {commentsList}
-      <CommentForm dishId={dishId} addComment={addComment} />
+      <CommentForm dishId={dishId} postComment={postComment} />
     </>
   )
 }
@@ -153,7 +155,7 @@ const dishDetail = props => {
           <div className="col-12 col-md-5 m-1">
             <RenderComments
               comments={props.comments}
-              addComment={props.addComment}
+              postComment={props.postComment}
               dishId={props.dish.id}
             />
           </div>
